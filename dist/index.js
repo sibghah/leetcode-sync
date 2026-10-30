@@ -1,4 +1,4 @@
-/******/ (() => { // webpackBootstrap
+ /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ 7351:
@@ -14760,6 +14760,9 @@ function addToSubmissions(params) {
   console.log(response.data)
   console.log(response.data.data)
   console.log(response.data.data.submissionList)
+  if !(response.data.data.submissionList.submissions) {
+	  return false
+  }
 
   for (const submission of response.data.data.submissionList.submissions) {
     submissionTimestamp = Number(submission.timestamp);
