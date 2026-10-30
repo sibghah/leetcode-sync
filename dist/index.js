@@ -14760,7 +14760,7 @@ function addToSubmissions(params) {
   console.log(response.data)
   console.log(response.data.data)
   console.log(response.data.data.submissionList)
-  if !response.data.data.submissionList.submissions {
+  if (!response.data.data.submissionList.submissions) {
 	  return false
   }
 
