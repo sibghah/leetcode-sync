@@ -14756,16 +14756,22 @@ function addToSubmissions(params) {
     submissions,
   } = params;
 
-  console.log("debugging here")
-  console.log(response.data)
-  console.log(response.data.data)
-  console.log(response.data.data.submissionList)
   if (!response.data.data.submissionList.submissions) {
 	  return false
   }
 
+  const oneYearAgo = Math.floor(Date.now() / 1000) - 365 * 24 * 60 * 60;
+  const list = response?.data?.data?.submissionList;
+
+  if (!list || !Array.isArray(list.submissions)) {
+    return false;
+  }
+
   for (const submission of response.data.data.submissionList.submissions) {
     submissionTimestamp = Number(submission.timestamp);
+	if (submissionTimestamp < oneYearAgo) {
+      continue;
+    }
     if (submissionTimestamp <= lastTimestamp) {
       return false;
     }
